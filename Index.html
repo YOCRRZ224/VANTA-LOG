@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VANTA LOG — Absorb Every Error</title>
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --panel: #1a1a1a;
+      --accent: #bfffdc;
+      --text: #e0e0e0;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(180deg, #0d0d0d, #111);
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: 3rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+      text-shadow: 0 0 8px rgba(191,255,220,0.3);
+    }
+    .hero p {
+      margin-top: 16px;
+      color: #aaa;
+      max-width: 600px;
+    }
+    .cta {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+    }
+    .cta a {
+      text-decoration: none;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-family: 'Space Mono', monospace;
+      transition: 0.25s;
+    }
+    .cta a:hover {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 10px rgba(191,255,220,0.4);
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 10vw;
+      background: var(--panel);
+      border-top: 1px solid #222;
+    }
+    section h2 {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .feature {
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      transition: 0.3s;
+    }
+    .feature:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+    }
+    .feature i {
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    pre {
+      background: #141414;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Space Mono', monospace;
+      color: #bfffdc;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #0d0d0d;
+      color: #777;
+      border-top: 1px solid #222;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Scramble Animation */
+    .decrypt {
+      display: inline-block;
+      min-width: 220px;
+    }
+    .get-started {
+  padding: 80px 10%;
+  background: #0e0e0f;
+  color: #e5e5e5;
+  font-family: 'JetBrains Mono', monospace;
+  text-align: left;
+}
+
+.get-started h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.get-started .code-box {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.get-started pre {
+  margin: 0;
+  color: #00ffaa;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+#get-started code {
+  color: #00ffaa;
+}
+
+#copySnippet {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #bbb;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+#copySnippet:hover {
+  color: #00ffaa;
+  transform: scale(1.1);
+}
+a {
+    text-decoration: none;
+    color: var(--accent);
+}
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1 class="decrypt" data-text="VANTA LOG"></h1>
+    <p>Absorb Every Error — A portable in-browser console overlay for Android devs.</p>
+    <div class="cta">
+      <a href="#get-started">Get Started</a>
+      <a href="demo.html">Live Demo</a>
+    </div>
+  </div>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="feature"><i class="ph ph-bug"></i><h3>Error Tracking</h3><p>Automatically logs, captures and categorizes errors, warnings, and debug info in real-time.</p></div>
+      <div class="feature"><i class="ph ph-funnel-simple"></i><h3>Filter Logs</h3><p>Switch between All, Warnings, Errors, Info, Debug, and Resource logs seamlessly.</p></div>
+      <div class="feature"><i class="ph ph-download"></i><h3>Export Logs</h3><p>Download logs as JSON instantly to share or debug later.</p></div>
+      <div class="feature"><i class="ph ph-code"></i><h3>Plug & Play</h3><p>Simply paste one script at the bottom of your HTML and start logging instantly.</p></div>
+    </div>
+  </section>
+
+<section id="get-started" class="get-started">
+  <h2><i class="ph ph-terminal-window"></i> Get Started</h2>
+  <p>Paste this snippet at the bottom of your HTML, before <code>&lt;/body&gt;</code>.</p>
+
+  <div class="code-box">
+    <pre><code>GO TO  <a href="https://github.com/YOCRRZ224/VANTA-LOG">Github</a></code></pre>
+  </div>
+
+  <p>That’s it. Open your app, and press <strong>Ctrl + Shift + D</strong> to toggle the overlay.</p>
+</section>
+
+  <section id="how">
+    <h2>How it Works</h2>
+    <p>VANTA LOG hooks into browser consoles, fetch calls, and XHR requests to capture real-time logs in a clean terminal UI. Built for Android devs using tools like Termux, Pydroid, or mobile browsers.</p>
+  </section>
+
+  <footer>
+    <p>⚙️ Built by Android Devs, for Android Devs. | <a href="https://github.com/YOCRRZ224/VANTA-LOG">GitHub</a> | MIT License</p>
+  </footer>
+
+  <script>
+    // Text Scramble / Decrypt Effect
+    class TextDecrypt {
+      constructor(el){
+        this.el = el;
+        this.chars = '!<>-_\\/[]{}—=+*^?#________';
+        this.update = this.update.bind(this);
+      }
+      setText(newText){
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise(resolve => this.resolve = resolve);
+        this.queue = [];
+        for(let i=0;i<length;i++){
+          const from = oldText[i] || '';
+          const to = newText[i] || '';
+          const start = Math.floor(Math.random()*40);
+          const end = start + Math.floor(Math.random()*40);
+          this.queue.push({from,to,start,end});
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+      update(){
+        let output = '';
+        let complete = 0;
+        for(let i=0, n=this.queue.length; i<n; i++){
+          let {from,to,start,end,char} = this.queue[i];
+          if(this.frame >= end){
+            complete++;
+            output += to;
+          } else if(this.frame >= start){
+            if(!char || Math.random()<0.28){
+              char = this.randomChar();
+              this.queue[i].char = char;
+            }
+            output += `<span style="color:#666">${char}</span>`;
+          } else {
+            output += from;
+          }
+        }
+        this.el.innerHTML = output;
+        if(complete === this.queue.length){
+          this.resolve();
+        } else {
+          this.frameRequest = requestAnimationFrame(this.update);
+          this.frame++;
+        }
+      }
+      randomChar(){
+        return this.chars[Math.floor(Math.random() * this.chars.length)];
+      }
+    }
+    const el = document.querySelector('.decrypt');
+    const fx = new TextDecrypt(el);
+    fx.setText(el.dataset.text);
+  </script>
+</body>
+  </html>
