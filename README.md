@@ -243,7 +243,7 @@ Once added, refresh your site — you’ll see the VANTA LOG panel pop up automa
 
 ---
 
-📱 Why Android Devs Love It
+## 📱 Why Android Devs Love It
 
 Feature	Description
 
@@ -259,36 +259,9 @@ Feature	Description
 💎 Self-contained	No frameworks, no external dependencies
 
 
-
 ---
 
-🧩 Integration Example
-
-Here’s what your index.html might look like:
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My App</title>
-</head>
-<body>
-  <h1>Hello World</h1>
-
-  <!-- Your App JS -->
-  <script src="app.js"></script>
-
-  <!-- ⚡ Add this at the very end -->
-  <script src="vantalog.js"></script>
-</body>
-</html>
-
-That’s it. You’re now watching your site like a dev god.
-
-
----
-
-🧰 Keyboard Shortcuts
+## 🧰 Keyboard Shortcuts
 
 Shortcut	Action
 
@@ -300,24 +273,23 @@ ESC	(Coming Soon) Quick close
 
 ---
 
-💾 Exported File Format
+## 💾 Exported File Format
 
 When you click the Download button, you’ll get a .json file named like:
-
+```
 vantalog_2025-11-11_12_45_02.json
-
+```
 Each entry looks like:
-
+```
 {
   "time": "2025-11-11 12:45:02",
   "type": "error",
   "text": "Uncaught ReferenceError: foo is not defined"
 }
-
-
+```
 ---
 
-🧠 Developer Notes
+## 🧠 Developer Notes
 
 Works offline, no dependencies.
 
@@ -331,7 +303,7 @@ Built for debugging on-the-go in mobile environments.
 
 ---
 
-🛠️ Upcoming Features (Stable Version)
+## 🛠️ Upcoming Features (Stable Version)
 
 [ ] Persistent logs using localStorage
 
@@ -353,7 +325,7 @@ Built for debugging on-the-go in mobile environments.
 
 ---
 
-⚠️ Project Status
+## ⚠️ Project Status
 
 🚧 UNDER CONSTRUCTION — Stable release coming soon.
 The current build is Beta / Experimental, but already functional and stable enough for daily debugging.
@@ -365,7 +337,7 @@ The current build is Beta / Experimental, but already functional and stable enou
 
 ---
 
-💚 License
+## 💚 License
 
 Licensed under the MIT License — you’re free to use, modify, and distribute it.
 
