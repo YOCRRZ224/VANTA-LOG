@@ -239,8 +239,9 @@ Paste this snippet **right before the closing `</body>` tag** of your project’
 </script>
 ```
 Once added, refresh your site — you’ll see the VANTA LOG panel pop up automatically.
-
-
+ 
+## Live Demo
+https://yocrrz224.github.io/VANTA-LOG
 ---
 
 ## 📱 Why Android Devs Love It
