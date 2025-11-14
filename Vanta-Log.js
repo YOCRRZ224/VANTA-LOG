@@ -1,3 +1,4 @@
+<script>
 (function () {
   const MAX_LINES = 1000;
 
@@ -200,3 +201,4 @@
   updateCount();
   console.log('VANTA LOG - Absorb Every Error');
 })();
+</script>
