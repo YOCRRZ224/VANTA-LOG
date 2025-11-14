@@ -32,7 +32,7 @@ Just pure `<script>` magic.
 Paste this snippet **right before the closing `</body>` tag** of your project’s `index.html`:
 
 ```html
-https://raw.githack.com/YOCRRZ224/VANTA-LOG/897dde608b00b294ad007fb857ffc8dc0fab1907/Vanta-Log.js
+<script src="https://rawcdn.githack.com/YOCRRZ224/VANTA-LOG/ee77bd97137e1fa567c1a3c6049d1593b64cd3c7/Vanta-Log.js"></script>
 ```
 Once added, refresh your site — you’ll see the VANTA LOG panel pop up automatically.
  
