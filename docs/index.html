@@ -227,10 +227,10 @@ a {
 <section id="get-started" class="get-started">
   <h2><i class="ph ph-terminal-window"></i> Get Started</h2>
   <p>Paste this snippet at the bottom of your HTML, before <code>&lt;/body&gt;</code>.</p>
-
-  <div class="code-box">
-    <pre><code>GO TO  <a href="https://github.com/YOCRRZ224/VANTA-LOG">Github</a></code></pre>
-  </div>
+<div class="code-box">
+  <pre><code id="cdnSnippet">&lt;script src="https://rawcdn.githack.com/YOCRRZ224/VANTA-LOG/ee77bd97137e1fa567c1a3c6049d1593b64cd3c7/Vanta-Log.js"&gt;&lt;/script&gt;</code></pre>
+  <button id="copySnippet" title="Copy to clipboard"><i class="ph ph-copy"></i></button>
+</div>
 
   <p>That’s it. Open your app, and press <strong>Ctrl + Shift + D</strong> to toggle the overlay.</p>
 </section>
@@ -303,5 +303,25 @@ a {
     const fx = new TextDecrypt(el);
     fx.setText(el.dataset.text);
   </script>
+  <script>
+  const copyBtn = document.getElementById('copySnippet');
+  const snippetEl = document.getElementById('cdnSnippet');
+
+  copyBtn.addEventListener('click', () => {
+    const text = snippetEl.innerText.replace(/^\s+|\s+$/g, ''); // trim
+    navigator.clipboard.writeText(text).then(() => {
+      copyBtn.innerText = '✓ Copied';
+      setTimeout(() => {
+        copyBtn.innerHTML = '<i class="ph ph-copy"></i>';
+      }, 1500);
+    }).catch(err => {
+      console.error('Copy failed', err);
+      copyBtn.innerText = '✗ Error';
+      setTimeout(() => {
+        copyBtn.innerHTML = '<i class="ph ph-copy"></i>';
+      }, 1500);
+    });
+  });
+</script>
 </body>
   </html>
