@@ -1,171 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VANTA LOG Live Demo</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/phosphor-icons"></script>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background: #0b0b0c;
-      color: #eaeaea;
-      font-family: 'JetBrains Mono', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 40px 10px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      color: #fff;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-    }
-
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .toolbar button {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #bbb;
-      font-family: inherit;
-      font-size: 0.9rem;
-      padding: 10px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.25s ease;
-    }
-
-    .toolbar button:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #00ffaa;
-      transform: translateY(-2px);
-    }
-
-    .console {
-      width: 95%;
-      max-width: 900px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 15px;
-      overflow-y: auto;
-      height: 400px;
-      box-shadow: 0 0 10px rgba(0, 255, 170, 0.05);
-    }
-
-    .log-line {
-      display: flex;
-      align-items: flex-start;
-      margin: 4px 0;
-      line-height: 1.4;
-    }
-
-    .log-icon {
-      width: 22px;
-      flex-shrink: 0;
-      margin-right: 6px;
-      text-align: center;
-      font-size: 1rem;
-    }
-
-    .log-text {
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    /* Color coding */
-    .type-log .log-icon { color: #00ffaa; }
-    .type-warn .log-icon { color: #ffcc00; }
-    .type-error .log-icon { color: #ff4444; }
-    .type-info .log-icon { color: #5eb3ff; }
-    .type-debug .log-icon { color: #9f7fff; }
-
-    .fade-in {
-      animation: fade 0.3s ease;
-    }
-
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(3px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    footer {
-      margin-top: 40px;
-      color: #555;
-      font-size: 0.8rem;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VANTA LOG Live Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/phosphor-icons"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0b0b0c;
+    color: #eaeaea;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 40px 10px;
+  }
+  h1 { font-size: 2rem; color: #fff; letter-spacing: 1px; margin-bottom: 20px; }
+  .toolbar {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px;
+  }
+  .toolbar button {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #bbb;
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+  }
+  .toolbar button:hover { background: rgba(255,255,255,0.1); color: #00ffaa; transform: translateY(-2px); }
+  .console {
+    width: 95%; max-width: 900px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 15px;
+    overflow-y: auto;
+    height: 400px;
+    box-shadow: 0 0 10px rgba(0,255,170,0.05);
+  }
+</style>
 </head>
 <body>
-  <h1><i class="ph ph-terminal-window"></i> VANTA LOG — Live Demo</h1>
+<h1><i class="ph ph-terminal-window"></i> VANTA LOG — Live Demo</h1>
 
-  <script type="text/javascript" charset="utf-8">
-      /**
- * test-logger.js
- * Pure JS test script that emits log / warn / error / debug events
- * and performs a few network requests to produce varied outcomes.
- *
- * Usage:
- *  - Browser console: paste and run
- *  - Node (v18+): node test-logger.js
- *
- * NOTE: In browsers, cross-origin failures may show CORS errors instead of full responses.
- */
+<div class="toolbar">
+  <button onclick="triggerLog('info')"><i class="ph ph-info"></i> Info</button>
+  <button onclick="triggerLog('warn')"><i class="ph ph-warning"></i> Warn</button>
+  <button onclick="triggerLog('error')"><i class="ph ph-x-circle"></i> Error</button>
+  <button onclick="triggerLog('debug')"><i class="ph ph-bug"></i> Debug</button>
+  <button onclick="triggerLog('custom')"><i class="ph ph-sparkle"></i> Custom</button>
+  <button onclick="triggerLog('network')"><i class="ph ph-cloud-arrow-up"></i> Network</button>
+  <button onclick="triggerLog('image')"><i class="ph ph-image"></i> Image</button>
+  <button onclick="triggerLog('spam')"><i class="ph ph-lightning"></i> Spam</button>
+</div>
 
-(async function testLogger() {
+
+<script>
+(async function demoEnhancer() {
   const now = () => new Date().toISOString();
-
-  function mark(tag, ...args) {
-    // keep original console behavior; include consistent prefix + timestamp
-    console.log(`[${tag}] ${now()} -`, ...args);
-  }
 
   function info(...a) { console.log('[INFO]', now(), ...a); }
   function warn(...a) { console.warn('[WARN]', now(), ...a); }
   function error(...a) { console.error('[ERROR]', now(), ...a); }
   function debug(...a) { console.debug('[DEBUG]', now(), ...a); }
 
-  info('Starting testLogger sequence');
-
-  // 1) Immediate basic logs
-  info('A normal info message');
-  debug('A debug message with object', { step: 1, ok: true });
-  warn('A warning about deprecated behaviour');
-  error('A synchronous error example (logged, not thrown)');
-
-  // 2) Thrown/caught error (simulate crash + recovery)
-  try {
-    throw new Error('Simulated thrown error for testing (caught)');
-  } catch (e) {
-    error('Caught error:', e && e.message);
-    debug('Caught stack (trimmed):', (e && e.stack || '').split('\n').slice(0,3).join(' | '));
-  }
-
-  // 3) Async work: successful fetch
   async function fetchJson(url) {
-    mark('FETCH', 'request ->', url);
+    console.log('[FETCH]', now(), 'request ->', url);
     try {
       const res = await fetch(url, { cache: 'no-store' });
-      mark('FETCH', 'status', res.status);
+      console.log('[FETCH]', now(), 'status', res.status);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json = await res.json();
       debug('Fetched JSON:', json && Object.keys(json).slice(0,5));
@@ -177,100 +90,59 @@
     }
   }
 
-  // well-known test endpoints:
-  const goodUrl = 'https://jsonplaceholder.typicode.com/posts/1'; // returns JSON
-  const notFoundUrl = 'https://jsonplaceholder.typicode.com/posts/99999999'; // 404
-  const invalidHost = 'https://invalid.invalid.example.test/'; // network error
-
-  // run fetches in sequence with spacing to simulate real usage
-  try {
-    await fetchJson(goodUrl);
-  } catch (_) { /* already logged */ }
-
-  // intentional 404
-  try {
-    await fetchJson(notFoundUrl);
-  } catch (_) { /* already logged */ }
-
-  // intentional network failure (may behave differently in browser vs node)
-  try {
-    await fetchJson(invalidHost);
-  } catch (_) { /* already logged */ }
-
-  // 4) Request image resource to produce varied events (200 or CORS)
-  (function loadImageTest() {
-    const img = new Image();
-    const testImgGood = 'https://via.placeholder.com/80'; // should load
-    const testImgBad = 'https://httpstat.us/500?sleep=1000'; // 500-ish
-
-    img.onload = () => info('Image loaded OK', testImgGood);
-    img.onerror = (ev) => error('Image failed to load', ev);
-
-    // try good image first
-    img.src = testImgGood;
-
-    // after a short delay try a bad image to trigger error
-    setTimeout(() => {
-      const img2 = new Image();
-      img2.onload = () => info('Image2 unexpectedly loaded');
-      img2.onerror = (ev) => warn('Image2 load error (expected for testing):', ev && ev.type);
-      img2.src = testImgBad + '&cachebuster=' + Date.now();
-    }, 800);
-  })();
-
-  // 5) Unhandled rejection (useful to ensure your logger catches global promise rejects)
-  // We deliberately create a rejected promise without .catch() to trigger global handlers.
-  setTimeout(() => {
-    mark('UNHANDLED', 'Creating an unhandled Promise rejection (intentional)');
-    Promise.reject(new Error('Intentional unhandled rejection - test'));
-  }, 1400);
-
-  // 6) Long-running debug stream (simulate high volume)
-  let spamCount = 0;
-  const spamLimit = 12;
-  const spamInterval = setInterval(() => {
-    spamCount++;
-    debug('High-frequency debug tick', { i: spamCount, ts: Date.now() });
-    if (spamCount === 5) warn('Spam approaching limit', spamCount);
-    if (spamCount >= spamLimit) {
-      clearInterval(spamInterval);
-      info('Finished spam stream');
+  // --- Interactive button triggers ---
+  window.triggerLog = function(type) {
+    switch(type) {
+      case 'info':
+        info('Manual info triggered');
+        break;
+      case 'warn':
+        warn('Manual warning triggered!');
+        break;
+      case 'error':
+        error('Manual error triggered!');
+        break;
+      case 'debug':
+        debug('Manual debug info', { value: Math.random() });
+        break;
+      case 'custom':
+        info('✨ Custom event fired', { id: Math.random().toString(36).slice(2) });
+        break;
+      case 'network':
+        fetchJson('https://jsonplaceholder.typicode.com/posts/' + Math.floor(Math.random()*200));
+        break;
+      case 'image':
+        const img = new Image();
+        img.onload = () => info('Manual image loaded successfully');
+        img.onerror = () => warn('Manual image load failed!');
+        img.src = 'https://via.placeholder.com/' + (Math.floor(Math.random()*100)+50);
+        break;
+      case 'spam':
+        let i = 0;
+        const interval = setInterval(() => {
+          i++;
+          const types = ['info','warn','error','debug'];
+          const t = types[Math.floor(Math.random()*types.length)];
+          triggerLog(t);
+          if(i>=15) clearInterval(interval);
+        }, 150);
+        break;
     }
-  }, 220);
+  };
 
-  // 7) Simulate recoverable warning condition
+  // --- Auto demo events ---
+  setTimeout(() => info('Demo initialized, try buttons above!'), 500);
+  setTimeout(() => warn('Simulated low memory warning'), 2000);
+  setTimeout(() => error('Simulated runtime error'), 3000);
+  setTimeout(() => debug('Debugging object example', { a:1, b:2 }), 4000);
+
   setTimeout(() => {
-    warn('Low memory simulation: freeing caches...');
-    // pretend to free caches
-    debug('Cache entries before:', 42);
-    debug('Cache cleared: removed 42 entries');
-    info('Recovered from low memory simulation');
-  }, 2400);
-
-  // 8) Final summary log
-  setTimeout(() => {
-    info('testLogger sequence finished. Summary: emitted logs, network success, 404, network error, image load tests, unhandled rejection, spam debug stream.');
-  }, 3200);
-
-  // Optional: attach handlers for global errors (helps for in-page logging capture)
-  if (typeof window !== 'undefined') {
-    window.addEventListener('error', e => {
-      error('Global error event captured:', e && (e.message || e.error && e.error.message || e.filename));
-    });
-    window.addEventListener('unhandledrejection', e => {
-      error('Global unhandledrejection captured:', e && (e.reason && e.reason.message || e.reason));
-    });
-  } else if (typeof process !== 'undefined' && process && process.on) {
-    process.on('uncaughtException', (err) => {
-      error('Node uncaughtException:', err && err.message);
-    });
-    process.on('unhandledRejection', (reason) => {
-      error('Node unhandledRejection:', reason && (reason.message || reason));
-    });
-  }
+    Promise.reject(new Error('Simulated unhandled rejection'));
+  }, 6000);
 
 })();
-  </script>
-  <script src="https://rawcdn.githack.com/YOCRRZ224/VANTA-LOG/ee77bd97137e1fa567c1a3c6049d1593b64cd3c7/Vanta-Log.js"></script>
+</script>
+
+<script src="https://rawcdn.githack.com/YOCRRZ224/VANTA-LOG/ee77bd97137e1fa567c1a3c6049d1593b64cd3c7/Vanta-Log.js"></script>
 </body>
-  </html>
+</html>
